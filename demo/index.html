@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reel Demo Porto Belo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+:root{--or:#F4843F;--or2:#FFA15C;--ink:#0c0a09;--brown:#1d120b}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#0f0f10;overflow:hidden;font-family:Inter,system-ui,sans-serif;color:#fff}
+#stage{position:absolute;left:50%;top:50%;width:1080px;height:1920px;overflow:hidden;background:#000;transform-origin:center}
+.clean #stage{box-shadow:none}
+#map{position:absolute;inset:0;background:linear-gradient(#9cc3e6,#dfe9f1)}
+.scene,.slide{position:absolute;inset:0;overflow:hidden}
+.slide img{position:absolute;top:0;left:0;height:1920px;width:2560px;max-width:none;will-change:transform}
+.shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 26%,rgba(0,0,0,0) 52%,rgba(0,0,0,.72) 100%)}
+.pill{display:inline-flex;align-items:center;gap:14px;padding:14px 26px;border-radius:999px;background:rgba(12,10,9,.62);
+  backdrop-filter:blur(10px);font:600 30px Inter;letter-spacing:.14em;text-transform:uppercase}
+.pill i{width:14px;height:14px;border-radius:50%;background:var(--or);box-shadow:0 0 0 6px rgba(244,132,63,.28)}
+h1,h2,h3,.big{font-family:Montserrat,sans-serif}
+#hook{position:absolute;left:80px;right:80px;top:210px}
+#hook h1{margin-top:36px;font-weight:900;font-size:168px;line-height:.92;letter-spacing:-.02em;text-shadow:0 8px 40px rgba(0,0,0,.45)}
+#hook h1 .w{display:inline-block}
+#hook .or{color:var(--or2)}
+#hook .sub{margin-top:30px;font:600 44px Inter;text-shadow:0 4px 20px rgba(0,0,0,.6)}
+#hook .sub b{color:var(--or2)}
+.cap{position:absolute;left:80px;right:180px;bottom:430px}
+.cap .k{font:700 28px Inter;letter-spacing:.2em;color:var(--or2)}
+.cap .bar{height:8px;width:120px;background:var(--or);border-radius:4px;margin:18px 0 22px;transform-origin:left}
+.cap h3{font-weight:900;font-size:104px;line-height:.95;letter-spacing:-.015em;text-shadow:0 6px 30px rgba(0,0,0,.5)}
+.cap p{margin-top:16px;font:500 44px Inter;opacity:.95;text-shadow:0 4px 20px rgba(0,0,0,.6)}
+.clip{overflow:hidden;padding-bottom:6px}
+#specs{position:absolute;left:80px;right:80px;top:260px}
+#specs .row{display:flex;align-items:baseline;gap:14px}
+#specs .big{font-weight:900;font-size:200px;line-height:.9;letter-spacing:-.03em;text-shadow:0 8px 40px rgba(0,0,0,.5)}
+#specs .big small{font-size:80px;margin-left:8px;color:var(--or2)}
+#specs .lbl{font:600 40px Inter;letter-spacing:.04em;margin:6px 0 46px;text-shadow:0 4px 20px rgba(0,0,0,.6)}
+#specs .chips{display:flex;flex-wrap:wrap;gap:18px}
+.chip{display:inline-flex;align-items:center;gap:14px;padding:18px 28px;border-radius:22px;background:rgba(12,10,9,.66);backdrop-filter:blur(12px);font:600 38px Inter}
+.chip svg{width:44px;height:44px;stroke:var(--or2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#mapUI{position:absolute;inset:0;pointer-events:none}
+#mapTitle{position:absolute;left:80px;right:80px;top:180px}
+#mapTitle .t{position:absolute;left:0;top:0;right:0}
+#mapTitle h2{margin-top:26px;font-weight:900;font-size:112px;line-height:.95;letter-spacing:-.02em;text-shadow:0 6px 34px rgba(0,0,0,.55)}
+#mapTitle h2 em{font-style:normal;color:var(--or2)}
+#mapShade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 70%,rgba(0,0,0,.5) 100%)}
+#attr{position:absolute;left:24px;bottom:18px;font:500 18px Inter;opacity:.6}
+.pin{position:relative;width:0;height:0}
+.pin .in{position:absolute;left:0;top:0;transform-origin:0 0}
+.home .dot{position:absolute;left:-52px;top:-52px;width:104px;height:104px;border-radius:50%;background:var(--or);display:grid;place-items:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 0 8px #fff}
+.home .dot svg{width:54px;height:54px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.home .pulse{position:absolute;left:-52px;top:-52px;width:104px;height:104px;border-radius:50%;border:6px solid var(--or)}
+.home .lbl{position:absolute;left:0;top:78px;transform:translateX(-50%);white-space:nowrap;padding:14px 26px;border-radius:18px;background:#fff;color:var(--ink);
+  font:800 36px Montserrat;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.poi .dot{position:absolute;left:-17px;top:-17px;width:34px;height:34px;border-radius:50%;background:#fff;border:8px solid var(--or);box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.poi .card{position:absolute;bottom:30px;left:0;transform:translateX(-50%);white-space:nowrap;padding:10px 12px 10px 10px;border-radius:20px;background:rgba(12,10,9,.86);
+  backdrop-filter:blur(8px);display:flex;align-items:center;gap:14px;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.poi .card::after{content:"";position:absolute;left:50%;bottom:-12px;margin-left:-12px;border:12px solid transparent;border-bottom:0;border-top-color:rgba(12,10,9,.86)}
+.poi .card .ic{width:54px;height:54px;border-radius:14px;background:var(--or);display:grid;place-items:center}
+.poi .card .ic svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.poi .card b{font:800 32px Montserrat}
+.poi .card span{padding:6px 14px;border-radius:12px;background:rgba(244,132,63,.18);font:700 28px Inter;color:var(--or2)}
+#end{position:absolute;inset:0;overflow:hidden}
+#end .bg{position:absolute;inset:-80px;background:url(fotos/02.jpg) center/cover;filter:blur(36px) brightness(.5);transform:scale(1.1)}
+#end .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,18,11,.72),rgba(12,10,9,.94))}
+#end .ct{position:absolute;left:80px;right:80px;top:250px;text-align:center;display:flex;flex-direction:column;align-items:center}
+#end .logo{width:220px;height:220px;border-radius:36px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+#end .logo img{width:100%;height:100%;display:block}
+#end .kick{margin-top:56px;font:700 32px Inter;letter-spacing:.2em;color:var(--or2);text-transform:uppercase}
+#end .price{margin-top:18px;font:900 150px Montserrat;letter-spacing:-.03em;line-height:1}
+#end .grid{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%}
+#end .grid .chip{justify-content:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);font-size:34px}
+#end .cta{margin-top:60px;width:100%;padding:34px;border-radius:30px;background:var(--or);color:var(--ink);box-shadow:0 20px 50px rgba(244,132,63,.35)}
+#end .cta .l1{font:700 32px Inter;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+#end .cta .l2{margin-top:6px;font:900 76px Montserrat;letter-spacing:-.01em}
+#end .names{margin-top:30px;font:500 30px Inter;line-height:1.6;opacity:.85}
+#end .names b{font-weight:700}
+#ctrl{position:fixed;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;gap:14px;padding:0 18px;background:#18181b;border-top:1px solid #27272a;font:500 14px Inter;color:#d4d4d8;z-index:10}
+#ctrl button{background:#27272a;color:#fff;border:0;border-radius:8px;padding:9px 14px;font:600 14px Inter;cursor:pointer}
+#ctrl button:hover{background:#3f3f46}
+#ctrl button:disabled{opacity:.4;cursor:default}
+#ctrl input{flex:1;accent-color:#F4843F}
+#ctrl .t{font-variant-numeric:tabular-nums;min-width:92px;text-align:right}
+.clean #ctrl{display:none}
+#loading{position:fixed;inset:0 0 64px 0;display:grid;place-items:center;font:600 18px Inter;color:#a1a1aa;z-index:5;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="map"></div>
+  <div id="mapUI">
+    <div id="mapShade"></div>
+    <div id="mapTitle">
+      <div class="t" id="mt1"><span class="pill"><i></i>Localização</span><h2>Cornélio<br>Procópio <em>· PR</em></h2></div>
+      <div class="t" id="mt2"><span class="pill"><i></i>Jd. Porto Belo</span><h2>Tudo em até<br><em>5 min</em> de carro</h2></div>
+    </div>
+    <div id="attr">Imagens © Esri · Mapa e rotas © OpenStreetMap</div>
+  </div>
+  <div id="slides"></div>
+  <div id="hook">
+    <span class="pill"><i></i>À venda · Cornélio Procópio</span>
+    <h1><span class="w">CASA</span> <span class="w">COM</span><br><span class="w or">PISCINA</span></h1>
+    <p class="sub">no Jd. Porto Belo, perto da <b>UTFPR</b></p>
+  </div>
+  <div id="specs">
+    <div class="row"><span class="big"><span id="n1">0</span><small>m²</small></span></div>
+    <div class="lbl">de área construída</div>
+    <div class="row"><span class="big"><span id="n2">0</span><small>m²</small></span></div>
+    <div class="lbl">de terreno</div>
+    <div class="chips" id="specChips"></div>
+  </div>
+  <div id="end">
+    <div class="bg"></div><div class="tint"></div>
+    <div class="ct">
+      <div class="logo"><img src="logo.png" alt="Marcio Vasselai Corretor e Imobiliária"></div>
+      <div class="kick">Casa · Jd. Porto Belo</div>
+      <div class="price" id="price">R$ 0</div>
+      <div class="grid" id="endChips"></div>
+      <div class="cta"><div class="l1">Chame no WhatsApp</div><div class="l2">(43) 98434-3083</div></div>
+      <div class="names"><b>Natan Vasselai</b> · CRECI 51635-F<br><b>Márcio Vasselai</b> · CRECI J-8542 · (43) 99952-2254</div>
+    </div>
+  </div>
+</div>
+<div id="loading">Carregando mapa e fotos…</div>
+<div id="ctrl">
+  <button id="play" disabled>▶ Play</button>
+  <button id="restart" disabled>↺</button>
+  <input id="scrub" type="range" min="0" max="1000" value="0" disabled>
+  <span class="t" id="time">0.0 / 0.0s</span>
+</div>
+<script>
+const POIS = [{"name":"UTFPR","cat":"Universidade","lon":-50.65691,"lat":-23.18617,"mode":"car","dist":1627,"dur":3.8,"route":[[-50.65698,-23.19401],[-50.65675,-23.19405],[-50.65647,-23.19404],[-50.65619,-23.19395],[-50.65567,-23.1932],[-50.65583,-23.19294],[-50.65586,-23.19287],[-50.65602,-23.19262],[-50.6561,-23.19248],[-50.65634,-23.19175],[-50.65644,-23.19146],[-50.65669,-23.19086],[-50.65682,-23.19052],[-50.65688,-23.1903],[-50.65691,-23.19016],[-50.65692,-23.18994],[-50.65691,-23.18969],[-50.65687,-23.18968],[-50.6567,-23.18967],[-50.6565,-23.18968],[-50.65646,-23.18968],[-50.65542,-23.18955],[-50.65469,-23.18948],[-50.65462,-23.18948],[-50.65472,-23.18865],[-50.65476,-23.18827],[-50.65489,-23.18725],[-50.65495,-23.18663],[-50.65499,-23.18603],[-50.655,-23.18595],[-50.65503,-23.18568],[-50.65505,-23.18545],[-50.65508,-23.18533],[-50.6551,-23.18523],[-50.65513,-23.185],[-50.65516,-23.1848],[-50.65517,-23.18472],[-50.65522,-23.18472],[-50.65525,-23.18472],[-50.65613,-23.18481],[-50.65703,-23.1849],[-50.65695,-23.18556]]},{"name":"Hospital Unimed","cat":"Saúde","lon":-50.65493,"lat":-23.18929,"mode":"car","dist":1027,"dur":2.5,"route":[[-50.65698,-23.19401],[-50.65675,-23.19405],[-50.65647,-23.19404],[-50.65619,-23.19395],[-50.65567,-23.1932],[-50.65583,-23.19294],[-50.65586,-23.19287],[-50.65602,-23.19262],[-50.6561,-23.19248],[-50.65634,-23.19175],[-50.65644,-23.19146],[-50.65669,-23.19086],[-50.65682,-23.19052],[-50.65688,-23.1903],[-50.65691,-23.19016],[-50.65692,-23.18994],[-50.65691,-23.18969],[-50.65687,-23.18968],[-50.6567,-23.18967],[-50.6565,-23.18968],[-50.65616,-23.18889],[-50.65612,-23.18875],[-50.65609,-23.18861],[-50.65609,-23.18839],[-50.65555,-23.18835],[-50.65484,-23.18827],[-50.65472,-23.18927]]},{"name":"Supermercado Molini's","cat":"Mercado","lon":-50.64971,"lat":-23.18739,"mode":"car","dist":1448,"dur":3.6,"route":[[-50.65698,-23.19401],[-50.65675,-23.19405],[-50.65647,-23.19404],[-50.65619,-23.19395],[-50.65567,-23.1932],[-50.65583,-23.19294],[-50.65586,-23.19287],[-50.65602,-23.19262],[-50.6561,-23.19248],[-50.65634,-23.19175],[-50.65644,-23.19146],[-50.65669,-23.19086],[-50.65682,-23.19052],[-50.65688,-23.1903],[-50.65691,-23.19016],[-50.65692,-23.18994],[-50.65691,-23.18969],[-50.65687,-23.18968],[-50.6567,-23.18967],[-50.6565,-23.18968],[-50.65616,-23.18889],[-50.65612,-23.18875],[-50.65609,-23.18861],[-50.65609,-23.18839],[-50.65555,-23.18835],[-50.65484,-23.18827],[-50.65476,-23.18827],[-50.65384,-23.18819],[-50.65292,-23.18811],[-50.65202,-23.18802],[-50.65111,-23.18793],[-50.65018,-23.18784],[-50.6501,-23.18783],[-50.64967,-23.1878]]},{"name":"Colégio N. Sra. do Rosário","cat":"Escola","lon":-50.65828,"lat":-23.18237,"mode":"car","dist":1886,"dur":4.1,"route":[[-50.65698,-23.19401],[-50.65675,-23.19405],[-50.65647,-23.19404],[-50.65619,-23.19395],[-50.65567,-23.1932],[-50.65583,-23.19294],[-50.65586,-23.19287],[-50.65602,-23.19262],[-50.6561,-23.19248],[-50.65634,-23.19175],[-50.65644,-23.19146],[-50.65669,-23.19086],[-50.65682,-23.19052],[-50.65688,-23.1903],[-50.65691,-23.19016],[-50.65692,-23.18994],[-50.65691,-23.18969],[-50.65687,-23.18968],[-50.6567,-23.18967],[-50.6565,-23.18968],[-50.65646,-23.18968],[-50.65542,-23.18955],[-50.65469,-23.18948],[-50.65462,-23.18948],[-50.65472,-23.18865],[-50.65476,-23.18827],[-50.65489,-23.18725],[-50.65495,-23.18663],[-50.65499,-23.18603],[-50.655,-23.18595],[-50.65503,-23.18568],[-50.65505,-23.18545],[-50.65508,-23.18533],[-50.6551,-23.18523],[-50.65513,-23.185],[-50.65516,-23.1848],[-50.65517,-23.18472],[-50.65525,-23.18421],[-50.65529,-23.18413],[-50.65531,-23.18375],[-50.65532,-23.1837],[-50.65533,-23.18357],[-50.65542,-23.18266],[-50.65543,-23.18261],[-50.65547,-23.18262],[-50.65641,-23.18271],[-50.65731,-23.1828],[-50.65822,-23.18286],[-50.65823,-23.18286]]},{"name":"Prefeitura · Centro","cat":"Centro","lon":-50.64961,"lat":-23.18127,"mode":"car","dist":2324,"dur":4.5,"route":[[-50.65698,-23.19401],[-50.65675,-23.19405],[-50.65647,-23.19404],[-50.65619,-23.19395],[-50.65567,-23.1932],[-50.65583,-23.19294],[-50.65586,-23.19287],[-50.65602,-23.19262],[-50.6561,-23.19248],[-50.65634,-23.19175],[-50.65644,-23.19146],[-50.65669,-23.19086],[-50.65682,-23.19052],[-50.65688,-23.1903],[-50.65691,-23.19016],[-50.65692,-23.18994],[-50.65691,-23.18969],[-50.65687,-23.18968],[-50.6567,-23.18967],[-50.6565,-23.18968],[-50.65646,-23.18968],[-50.65542,-23.18955],[-50.65469,-23.18948],[-50.65462,-23.18948],[-50.65472,-23.18865],[-50.65476,-23.18827],[-50.65489,-23.18725],[-50.65495,-23.18663],[-50.65499,-23.18603],[-50.655,-23.18595],[-50.65503,-23.18568],[-50.65505,-23.18545],[-50.65508,-23.18533],[-50.6551,-23.18523],[-50.65513,-23.185],[-50.65516,-23.1848],[-50.65517,-23.18472],[-50.65525,-23.18421],[-50.65529,-23.18413],[-50.65531,-23.18375],[-50.65532,-23.1837],[-50.65533,-23.18357],[-50.65542,-23.18266],[-50.65543,-23.18261],[-50.65543,-23.18255],[-50.65553,-23.18155],[-50.65458,-23.18146],[-50.65367,-23.18138],[-50.65276,-23.1813],[-50.6518,-23.18121],[-50.65161,-23.18119],[-50.65089,-23.18112],[-50.6499,-23.18103],[-50.64987,-23.1813]]},{"name":"Shopping Estação KM-125","cat":"Shopping","lon":-50.64788,"lat":-23.17874,"mode":"car","dist":2627,"dur":5.0,"route":[[-50.65698,-23.19401],[-50.65675,-23.19405],[-50.65647,-23.19404],[-50.65619,-23.19395],[-50.65567,-23.1932],[-50.65583,-23.19294],[-50.65586,-23.19287],[-50.65602,-23.19262],[-50.6561,-23.19248],[-50.65634,-23.19175],[-50.65644,-23.19146],[-50.65669,-23.19086],[-50.65682,-23.19052],[-50.65688,-23.1903],[-50.65691,-23.19016],[-50.65692,-23.18994],[-50.65691,-23.18969],[-50.65687,-23.18968],[-50.6567,-23.18967],[-50.6565,-23.18968],[-50.65646,-23.18968],[-50.65542,-23.18955],[-50.65469,-23.18948],[-50.65462,-23.18948],[-50.65472,-23.18865],[-50.65476,-23.18827],[-50.65489,-23.18725],[-50.65495,-23.18663],[-50.65499,-23.18603],[-50.65453,-23.18599],[-50.65408,-23.18596],[-50.65379,-23.18593],[-50.65346,-23.18589],[-50.65318,-23.18586],[-50.65274,-23.18583],[-50.65227,-23.18579],[-50.65195,-23.18575],[-50.65164,-23.18572],[-50.65134,-23.18569],[-50.65087,-23.18565],[-50.65043,-23.18561],[-50.65037,-23.1856],[-50.64981,-23.18555],[-50.64943,-23.18551],[-50.64923,-23.18549],[-50.649,-23.18547],[-50.64851,-23.18542],[-50.64852,-23.18536],[-50.64864,-23.18409],[-50.64867,-23.18376],[-50.64866,-23.18366],[-50.64864,-23.18357],[-50.64854,-23.18317],[-50.6482,-23.18198],[-50.64786,-23.18087],[-50.64754,-23.17978],[-50.64746,-23.17951],[-50.6474,-23.17932],[-50.64728,-23.17888]]}];
+const HOME = [-50.6568, -23.1932];
+const IC = {
+  bed:'<path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 14h18M6 10V7h5v3M3 18v2M21 18v2"/>',
+  bath:'<path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2"/>',
+  car:'<path d="M5 16l1.6-5h10.8L19 16M4 16h16v3H4zM7 19v1.5M17 19v1.5"/>',
+  pool:'<path d="M2 17c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M2 21c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M8 13V5a2 2 0 0 1 4 0M14 13V5a2 2 0 0 1 4 0M8 8h6"/>',
+  fire:'<path d="M12 3c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6.5 1 1 2 2 3 2.5.3-2-.5-4 0-6z"/>',
+  area:'<path d="M4 4h16v16H4zM4 9h5M15 4v5M20 15h-5M9 20v-5"/>',
+  house:'<path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/>',
+  uni:'<path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/>',
+  health:'<path d="M12 5v14M5 12h14"/>',
+  cart:'<path d="M3 4h2l2.4 11h10.4L20 7H6.2M9 20h.01M17 20h.01"/>',
+  school:'<path d="M4 19V8l8-4 8 4v11M4 19h16M9 19v-5h6v5M12 8v2"/>',
+  city:'<path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M9 11h.01M15 11h.01"/>',
+  mall:'<path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"/>'
+};
+const svg = k => `<svg viewBox="0 0 24 24">${IC[k]}</svg>`;
+const chip = (k, t) => `<div class="chip">${svg(k)}${t}</div>`;
+document.getElementById('specChips').innerHTML = chip('bed','3 dorm.') + chip('bath','1 suíte') + chip('car','2 vagas');
+document.getElementById('endChips').innerHTML = [['bed','3 dormitórios'],['bath','1 suíte c/ armários'],['car','2 vagas'],['area','180 m² · 250 m²'],['pool','Piscina'],['fire','Churrasqueira']].map(c=>chip(...c)).join('');
+
+// Ordem de revelação, lado do card e ícone por POI
+const POI_META = {
+  'Hospital Unimed':{ic:'health',label:'Hospital Unimed'},
+  'UTFPR':{ic:'uni',label:'UTFPR'},
+  "Supermercado Molini's":{ic:'cart',label:"Molini's"},
+  'Colégio N. Sra. do Rosário':{ic:'school',label:'Colégio Rosário'},
+  'Prefeitura · Centro':{ic:'city',label:'Centro'},
+  'Shopping Estação KM-125':{ic:'mall',label:'Shopping KM-125'}
+};
+const ORDER = ['Hospital Unimed','UTFPR',"Supermercado Molini's",'Colégio N. Sra. do Rosário','Prefeitura · Centro','Shopping Estação KM-125'];
+const pois = ORDER.map(n => ({...POIS.find(p => p.name === n), ...POI_META[n]}));
+
+// ---- Fotos (1024x768 esticadas p/ 2560x1920, focal f = fração horizontal do ponto de interesse)
+const SHOTS = [
+  {img:'03', f:.56},
+  {img:'01', f:.45, dir:-1, k:'01', h:'Piscina', p:'área de lazer completa', wipe:'x'},
+  {img:'04', f:.50, dir: 1, k:'02', h:'Churrasqueira', p:'espaço gourmet coberto', wipe:'y'},
+  {img:'05', f:.56, dir:-1, k:'03', h:'Cozinha', p:'com armários planejados', wipe:'x'},
+  {img:'06', f:.62, dir: 1, k:'04', h:'Sala de estar', p:'integrada à sala de jantar', wipe:'y'},
+  {img:'14', f:.52, dir:-1, k:'05', h:'Suíte', p:'com armários', wipe:'x'},
+  {img:'17', f:.56, dir: 1, wipe:'c'}
+];
+const clampX = x => Math.max(-1480, Math.min(0, x));
+const slidesEl = document.getElementById('slides');
+SHOTS.forEach(s => {
+  const d = document.createElement('div');
+  d.className = 'slide';
+  d.innerHTML = `<img src="fotos/${s.img}.jpg" alt=""><div class="shade"></div>` +
+    (s.h ? `<div class="cap"><div class="k">${s.k} / 05</div><div class="bar"></div><div class="clip"><h3>${s.h}</h3></div><div class="clip"><p>${s.p}</p></div></div>` : '');
+  slidesEl.appendChild(d);
+  s.el = d; s.im = d.querySelector('img');
+  const c = -(s.f * 2560 - 540);
+  s.x0 = clampX(c + (s.dir || 0) * 170); s.x1 = clampX(c - (s.dir || 0) * 170);
+});
+
+// ---- Mapa
+const map = new maplibregl.Map({
+  container: 'map', interactive: false, attributionControl: false, pixelRatio: 1, fadeDuration: 0, maxPitch: 70,
+  center: HOME, zoom: 17.6,
+  style: {
+    version: 8,
+    sources: {
+      sat: {type:'raster', tileSize:256, maxzoom:19, tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}']},
+      dem: {type:'raster-dem', tileSize:256, maxzoom:14, encoding:'terrarium', tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png']}
+    },
+    layers: [{id:'sat', type:'raster', source:'sat', paint:{'raster-saturation':.12,'raster-contrast':.1}}]
+  }
+});
+
+const CAM = {
+  home:  {lng:HOME[0], lat:HOME[1], zoom:17.6, pitch:0,  bearing:0},
+  city:  {lng:-50.6530, lat:-23.1850, zoom:13.7, pitch:35, bearing:-18},
+  frame: {lng:-50.6537, lat:-23.1866, zoom:15.1, pitch:40, bearing:-6},
+  orbit: {lng:-50.6537, lat:-23.1866, zoom:15.25, pitch:44, bearing:7}
+};
+const cam = {...CAM.home};
+const applyCam = () => map.jumpTo({center:[cam.lng, cam.lat], zoom:cam.zoom, pitch:cam.pitch, bearing:cam.bearing});
+
+function prepRoute(p) {
+  const c = p.route, cum = [0];
+  for (let i = 1; i < c.length; i++) {
+    const dx = (c[i][0] - c[i-1][0]) * Math.cos(c[i][1] * Math.PI / 180), dy = c[i][1] - c[i-1][1];
+    cum.push(cum[i-1] + Math.hypot(dx, dy));
+  }
+  p.cum = cum; p.len = cum[cum.length - 1];
+}
+function partial(p, t) {
+  const L = p.len * t, c = p.route, out = [c[0]];
+  for (let i = 1; i < c.length; i++) {
+    if (p.cum[i] <= L) { out.push(c[i]); continue; }
+    const k = (L - p.cum[i-1]) / (p.cum[i] - p.cum[i-1]);
+    out.push([c[i-1][0] + (c[i][0] - c[i-1][0]) * k, c[i-1][1] + (c[i][1] - c[i-1][1]) * k]);
+    break;
+  }
+  if (out.length < 2) out.push(c[0]);
+  return {type:'Feature', geometry:{type:'LineString', coordinates:out}};
+}
+
+function pinEl(cls, html) {
+  const el = document.createElement('div');
+  el.className = 'pin ' + cls;
+  el.innerHTML = `<div class="in">${html}</div>`;
+  return el;
+}
+
+const idle = () => new Promise(r => { map.once('idle', r); setTimeout(r, 8000); });
+
+map.on('load', async () => {
+  map.setTerrain({source:'dem', exaggeration:1.6});
+  pois.forEach((p, i) => {
+    prepRoute(p);
+    map.addSource('r' + i, {type:'geojson', data:partial(p, 0)});
+    map.addLayer({id:'rc' + i, type:'line', source:'r' + i, layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#0c0a09','line-width':16,'line-opacity':.55}});
+    map.addLayer({id:'rl' + i, type:'line', source:'r' + i, layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#FFA15C','line-width':9}});
+    p.marker = new maplibregl.Marker({element: pinEl('poi',
+      `<div class="dot"></div><div class="card"><div class="ic">${svg(p.ic)}</div><b>${p.label}</b><span>${Math.ceil(p.dur)} min</span></div>`), anchor:'center'})
+      .setLngLat([p.lon, p.lat]).addTo(map);
+    p.inner = p.marker.getElement().querySelector('.in');
+  });
+  const home = new maplibregl.Marker({element: pinEl('home', `<div class="pulse"></div><div class="dot">${svg('house')}</div><div class="lbl">Jd. Porto Belo</div>`), anchor:'center'})
+    .setLngLat(HOME).addTo(map);
+  window.homeIn = home.getElement().querySelector('.in');
+  window.homePulse = home.getElement().querySelector('.pulse');
+
+  // Pré-carrega tiles de todos os enquadramentos da câmera
+  for (const k of ['city', 'frame', 'orbit', 'home']) { Object.assign(cam, CAM[k]); applyCam(); await idle(); }
+  await Promise.race([Promise.all(SHOTS.map(s => s.im.decode().catch(() => {}))), new Promise(r => setTimeout(r, 3000))]);
+  await document.fonts.ready;
+  build();
+});
+
+// ---- Timeline
+let tl;
+function build() {
+  tl = gsap.timeline({paused:true, onUpdate:syncUI});
+  const $ = s => document.querySelector(s);
+  gsap.set(['#specs', '#end', '#mapUI', '#mt2'], {autoAlpha:0});
+  gsap.set(SHOTS.slice(1).map(s => s.el), {autoAlpha:0});
+
+  // 1. Gancho (0 – 3.2s)
+  const s0 = SHOTS[0];
+  tl.fromTo(s0.im, {x:clampX(-(s0.f * 2560 - 540)), scale:1, transformOrigin:'45% 70%'}, {scale:1.2, duration:3.7, ease:'none'}, 0)
+    .from('#hook .pill', {y:-30, autoAlpha:0, duration:.5, ease:'power3.out'}, .15)
+    .from('#hook .w', {yPercent:110, autoAlpha:0, rotate:4, duration:.7, stagger:.12, ease:'back.out(1.6)'}, .3)
+    .from('#hook .sub', {y:30, autoAlpha:0, duration:.5, ease:'power3.out'}, .95)
+    .to('#hook', {autoAlpha:0, y:-60, duration:.35, ease:'power2.in'}, 3.0);
+
+  // 2. Tour de fotos (3.2 – 12.5s)
+  const W = {x:['inset(0% 0% 0% 100%)','inset(0% 0% 0% 0%)'], y:['inset(100% 0% 0% 0%)','inset(0% 0% 0% 0%)'], c:['circle(0% at 50% 60%)','circle(80% at 50% 60%)']};
+  let t = 3.2;
+  SHOTS.slice(1).forEach((s, i) => {
+    const hold = s.wipe === 'c' ? 3.3 : 1.55;
+    tl.set(SHOTS[i].el, {autoAlpha:0}, t + .55)
+      .set(s.el, {autoAlpha:1}, t)
+      .fromTo(s.el, {clipPath:W[s.wipe][0]}, {clipPath:W[s.wipe][1], duration:.5, ease:'expo.inOut'}, t)
+      .fromTo(s.im, {x:s.x0, scale:1.14}, {x:s.x1, scale:1.02, duration:hold + .6, ease:'power1.out'}, t);
+    if (s.h) {
+      const cap = s.el.querySelector('.cap');
+      tl.from(cap.querySelector('.k'), {autoAlpha:0, x:-20, duration:.3}, t + .25)
+        .from(cap.querySelector('.bar'), {scaleX:0, duration:.4, ease:'power3.out'}, t + .28)
+        .from(cap.querySelector('h3'), {yPercent:105, duration:.5, ease:'power4.out'}, t + .32)
+        .from(cap.querySelector('p'), {yPercent:105, duration:.45, ease:'power4.out'}, t + .45);
+    }
+    t += hold;
+  });
+
+  // 3. Metragens sobre a fachada (12.5 – 15.3s)
+  const n1 = {v:0}, n2 = {v:0};
+  tl.set('#specs', {autoAlpha:1}, 12.7)
+    .from('#specs .row, #specs .lbl', {y:40, autoAlpha:0, duration:.45, stagger:.1, ease:'power3.out'}, 12.7)
+    .to(n1, {v:180, duration:1, ease:'power2.out', onUpdate:() => $('#n1').textContent = Math.round(n1.v)}, 12.75)
+    .to(n2, {v:250, duration:1, ease:'power2.out', onUpdate:() => $('#n2').textContent = Math.round(n2.v)}, 12.95)
+    .from('#specs .chip', {y:30, autoAlpha:0, scale:.9, duration:.4, stagger:.1, ease:'back.out(2)'}, 13.7)
+    .to('#specs', {autoAlpha:0, y:-50, duration:.35, ease:'power2.in'}, 15.1);
+
+  // 4. Transição fachada -> satélite, "drone subindo" (15.3 – 17.7s)
+  const facade = SHOTS[6].el;
+  tl.to(facade, {autoAlpha:0, scale:1.35, filter:'blur(18px)', duration:.8, ease:'power2.in'}, 15.3)
+    .set('#mapUI', {autoAlpha:1}, 15.3)
+    .fromTo(homeIn, {scale:0, y:-120}, {scale:1, y:0, duration:.6, ease:'bounce.out'}, 16.0)
+    .fromTo(homePulse, {scale:1, opacity:.9}, {scale:3.2, opacity:0, duration:1.2, repeat:9, ease:'power1.out'}, 16.1)
+    .fromTo('#mt1', {autoAlpha:0, y:30}, {autoAlpha:1, y:0, duration:.5, ease:'power3.out'}, 15.9)
+    .fromTo(cam, {...CAM.home}, {...CAM.city, duration:2.3, ease:'power2.inOut', onUpdate:applyCam}, 15.4)
+  // 5. Descida até o bairro + POIs com rotas reais (17.7 – 26.8s)
+    .to('#mt1', {autoAlpha:0, y:-30, duration:.35}, 17.9)
+    .fromTo('#mt2', {autoAlpha:0, y:30}, {autoAlpha:1, y:0, duration:.5, ease:'power3.out'}, 18.4)
+    .fromTo(cam, {...CAM.city}, {...CAM.frame, duration:2.2, ease:'power2.inOut', onUpdate:applyCam, immediateRender:false}, 17.7)
+    .fromTo(cam, {...CAM.frame}, {...CAM.orbit, duration:7, ease:'sine.inOut', onUpdate:applyCam, immediateRender:false}, 19.9);
+  pois.forEach((p, i) => {
+    const at = 19.9 + i * .95, pr = {t:0};
+    tl.fromTo(pr, {t:0}, {t:1, duration:.8, ease:'power1.inOut', onUpdate:() => map.getSource('r' + i).setData(partial(p, pr.t))}, at)
+      .fromTo(p.inner, {scale:0, autoAlpha:0}, {scale:1, autoAlpha:1, duration:.5, ease:'back.out(2.2)'}, at + .55);
+  });
+
+  // 6. Fechamento com preço e CTA (26.8 – 32s)
+  const price = {v:0};
+  tl.set('#end', {autoAlpha:1}, 26.8)
+    .fromTo('#end', {clipPath:'inset(100% 0% 0% 0%)'}, {clipPath:'inset(0% 0% 0% 0%)', duration:.6, ease:'expo.inOut'}, 26.8)
+    .from('#end .logo', {scale:.6, autoAlpha:0, duration:.55, ease:'back.out(2)'}, 27.2)
+    .from('#end .kick', {y:20, autoAlpha:0, duration:.4}, 27.4)
+    .to(price, {v:850000, duration:1.1, ease:'power3.out', onUpdate:() => $('#price').textContent = 'R$ ' + (Math.round(price.v / 1000) * 1000).toLocaleString('pt-BR')}, 27.45)
+    .from('#end .grid .chip', {y:30, autoAlpha:0, duration:.4, stagger:.07, ease:'power3.out'}, 27.9)
+    .from('#end .cta', {y:50, autoAlpha:0, scale:.95, duration:.5, ease:'back.out(1.8)'}, 28.6)
+    .to('#end .cta', {scale:1.04, duration:.35, yoyo:true, repeat:3, ease:'sine.inOut'}, 29.4)
+    .from('#end .names', {autoAlpha:0, duration:.5}, 29.0)
+    .to({}, {duration:.1}, 32);
+
+  document.getElementById('loading').remove();
+  ['play', 'restart', 'scrub'].forEach(id => document.getElementById(id).disabled = false);
+  syncUI();
+  window.tl = tl;
+  if (new URLSearchParams(location.search).has('autoplay')) tl.play(0);
+}
+
+// ---- Controles e escala
+const playBtn = document.getElementById('play'), scrub = document.getElementById('scrub'), timeEl = document.getElementById('time');
+function syncUI() {
+  scrub.value = Math.round(tl.progress() * 1000);
+  timeEl.textContent = tl.time().toFixed(1) + ' / ' + tl.duration().toFixed(1) + 's';
+  playBtn.textContent = tl.isActive() ? '❚❚ Pausar' : '▶ Play';
+}
+playBtn.onclick = () => { if (tl.progress() === 1) tl.restart(); else tl.paused(!tl.paused()); if (tl.paused()) syncUI(); else tl.play(); syncUI(); };
+document.getElementById('restart').onclick = () => { tl.restart(); syncUI(); };
+scrub.oninput = () => { tl.pause(); tl.progress(scrub.value / 1000, false); syncUI(); };
+// seek sem suprimir eventos: câmera do mapa, rotas e contadores dependem de onUpdate
+window.seekTo = t => { tl.pause(); tl.seek(t, false); };
+addEventListener('keydown', e => { if (e.code === 'Space' && tl) { e.preventDefault(); playBtn.click(); } });
+
+if (new URLSearchParams(location.search).has('clean')) document.body.classList.add('clean');
+function fit() {
+  const clean = document.body.classList.contains('clean');
+  const s = Math.min(innerWidth / 1080, (innerHeight - (clean ? 0 : 64)) / 1920);
+  const st = document.getElementById('stage');
+  st.style.transform = `translate(-50%, -50%) scale(${s})`;
+  st.style.top = clean ? '50%' : `calc(50% - 32px)`;
+}
+addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>

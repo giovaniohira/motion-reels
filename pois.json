@@ -1,0 +1,1097 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-09-28T16:54:56Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 2604365964,
+  "lat": -23.1808636,
+  "lon": -50.6493958,
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housename": "Agência Cornélio Procoópio",
+    "addr:housenumber": "252",
+    "addr:street": "Rua Minas Gerais",
+    "amenity": "bank",
+    "atm": "yes",
+    "brand": "Caixa Econômica Federal",
+    "brand:wikidata": "Q835283",
+    "name": "Caixa Econômica Federal"
+  }
+},
+{
+  "type": "node",
+  "id": 4109486864,
+  "lat": -23.1790751,
+  "lon": -50.6653152,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Paróquia Rainha dos Apóstolos"
+  }
+},
+{
+  "type": "node",
+  "id": 4761745321,
+  "lat": -23.1812707,
+  "lon": -50.6496064,
+  "tags": {
+    "amenity": "townhall",
+    "name": "Prefeitura Municipal de Cornélio Procópio"
+  }
+},
+{
+  "type": "node",
+  "id": 5618125521,
+  "lat": -23.1859700,
+  "lon": -50.6542950,
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "amenity": "pharmacy",
+    "name": "Farmácia",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 5878668782,
+  "lat": -23.1824063,
+  "lon": -50.6513816,
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "144",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Praça Manoel Ribas",
+    "addr:suburb": "Centro",
+    "amenity": "hospital",
+    "healthcare": "hospital",
+    "healthcare:speciality": "general",
+    "name": "Casa de Saúde Doutor João Lima"
+  }
+},
+{
+  "type": "node",
+  "id": 5902875745,
+  "lat": -23.1949743,
+  "lon": -50.6519660,
+  "tags": {
+    "amenity": "fuel"
+  }
+},
+{
+  "type": "node",
+  "id": 13854035854,
+  "lat": -23.1747801,
+  "lon": -50.6695288,
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:street": "PR-160",
+    "amenity": "university",
+    "education": "university",
+    "name": "UENP - Universidade Estadual do Norte do Paraná - Campus de Cornélio Procópio"
+  }
+},
+{
+  "type": "node",
+  "id": 14018047701,
+  "lat": -23.1803504,
+  "lon": -50.6574319,
+  "tags": {
+    "addr:street": "Rua Santa Catarina",
+    "amenity": "fuel",
+    "name": "Posto Petrobras"
+  }
+},
+{
+  "type": "node",
+  "id": 14018550602,
+  "lat": -23.1820434,
+  "lon": -50.6502503,
+  "tags": {
+    "addr:street": "Rua Mato Grosso",
+    "name": "Panificadora Jóia",
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 14018550603,
+  "lat": -23.1829169,
+  "lon": -50.6571279,
+  "tags": {
+    "addr:street": "Avenida Nossa Senhora do Rócio",
+    "name": "Padoka",
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 14018552501,
+  "lat": -23.1840332,
+  "lon": -50.6487163,
+  "tags": {
+    "amenity": "pharmacy",
+    "brand": "Droga Raia",
+    "brand:wikidata": "Q10357101",
+    "healthcare": "pharmacy",
+    "name": "Droga Raia"
+  }
+},
+{
+  "type": "node",
+  "id": 14018552603,
+  "lat": -23.1800757,
+  "lon": -50.6468067,
+  "tags": {
+    "addr:street": "Rua Rui Barbosa",
+    "amenity": "fuel",
+    "name": "Auto Posto Shell"
+  }
+},
+{
+  "type": "node",
+  "id": 14018959201,
+  "lat": -23.1875152,
+  "lon": -50.6480213,
+  "tags": {
+    "addr:housenumber": "1023",
+    "addr:street": "Avenida XV de Novembro",
+    "amenity": "pharmacy",
+    "brand": "Farmácia São João",
+    "brand:wikidata": "Q65164556",
+    "healthcare": "pharmacy",
+    "name": "Farmácia São João"
+  }
+},
+{
+  "type": "node",
+  "id": 14018959202,
+  "lat": -23.1881711,
+  "lon": -50.6542117,
+  "tags": {
+    "shop": "bakery"
+  }
+},
+{
+  "type": "node",
+  "id": 14018959601,
+  "lat": -23.1851002,
+  "lon": -50.6483882,
+  "tags": {
+    "addr:street": "Avenida XV de Novembro",
+    "amenity": "fuel",
+    "name": "Posto Ipiranga"
+  }
+},
+{
+  "type": "way",
+  "id": 240982923,
+  "center": {
+    "lat": -23.1742589,
+    "lon": -50.6691405
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "km 0",
+    "addr:postcode": "86300-000",
+    "addr:street": "PR-160 Rodovia do Contorno",
+    "amenity": "university",
+    "name": "UENP - Universidade Estadual do Norte do Paraná - Campus de Cornélio Procópio",
+    "website": "https://uenp.edu.br/ccp"
+  }
+},
+{
+  "type": "way",
+  "id": 241287745,
+  "center": {
+    "lat": -23.1799251,
+    "lon": -50.6502095
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 241303525,
+  "center": {
+    "lat": -23.1834461,
+    "lon": -50.6586095
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "amenity": "hospital",
+    "name": "Santa Casa de Misericórdia de Cornélio Procópio",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 241305202,
+  "center": {
+    "lat": -23.1830097,
+    "lon": -50.6539521
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:postcode": "86300-000",
+    "addr:suburb": "Centro",
+    "leisure": "park",
+    "name": "Praça Coronel Francisco Moreira da Costa (Botafogo)"
+  }
+},
+{
+  "type": "way",
+  "id": 241306230,
+  "center": {
+    "lat": -23.1823650,
+    "lon": -50.6582767
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "190",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Tiradentes",
+    "addr:suburb": "Centro",
+    "amenity": "school",
+    "name": "Colégio Nossa Senhora do Rosário",
+    "operator": "Particular",
+    "website": "https://www.cnsr.com.br/"
+  }
+},
+{
+  "type": "way",
+  "id": 355206996,
+  "center": {
+    "lat": -23.1861672,
+    "lon": -50.6569066
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:postcode": "86300-000",
+    "amenity": "university",
+    "name": "UTFPR - Cornélio Procópio",
+    "opening_hours": "24/7",
+    "operator": "Universidade Tecnológica Federal do Paraná",
+    "toilets:wheelchair": "no",
+    "wheelchair": "limited",
+    "wheelchair:description": "comentário"
+  }
+},
+{
+  "type": "way",
+  "id": 355207008,
+  "center": {
+    "lat": -23.1764470,
+    "lon": -50.6441590
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "340",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Portugal",
+    "amenity": "university",
+    "name": "UENP - Universidade Estadual do Norte do Paraná - Unidade Centro",
+    "website": "https://uenp.edu.br/ccp"
+  }
+},
+{
+  "type": "way",
+  "id": 362450897,
+  "center": {
+    "lat": -23.1822119,
+    "lon": -50.6491483
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "amenity": "bank",
+    "atm": "yes",
+    "brand": "Banco do Brasil",
+    "brand:wikidata": "Q610817",
+    "building": "commercial",
+    "name": "Banco do Brasil",
+    "opening_hours": "Mo-Su 10:00-15:00",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 362450898,
+  "center": {
+    "lat": -23.1833926,
+    "lon": -50.6487248
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 362450900,
+  "center": {
+    "lat": -23.1779317,
+    "lon": -50.6464999
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Praça Brasil"
+  }
+},
+{
+  "type": "way",
+  "id": 362450904,
+  "center": {
+    "lat": -23.1838577,
+    "lon": -50.6493026
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "433",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Paraíba",
+    "building": "yes",
+    "name": "Amigão Supermercados",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 483438805,
+  "center": {
+    "lat": -23.1832474,
+    "lon": -50.6596393
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 543980661,
+  "center": {
+    "lat": -23.1902525,
+    "lon": -50.6398278
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 555863688,
+  "center": {
+    "lat": -23.1785599,
+    "lon": -50.6482934
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "669",
+    "addr:street": "Rua Benjamin Constant",
+    "building": "supermarket",
+    "name": "Amigão Supermercados",
+    "operator": "Companhia Sul Americana de Distribuição",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 622342189,
+  "center": {
+    "lat": -23.1817918,
+    "lon": -50.6522469
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "543",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Minas Gerais",
+    "addr:suburb": "Centro",
+    "amenity": "school",
+    "barrier": "wall",
+    "name": "Escola Municipal Professor Lourenço Filho"
+  }
+},
+{
+  "type": "way",
+  "id": 622352730,
+  "center": {
+    "lat": -23.1823720,
+    "lon": -50.6515591
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "154",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Nossa Senhora do Rócio",
+    "addr:suburb": "Centro",
+    "amenity": "clinic",
+    "building": "yes",
+    "building:levels": "3",
+    "healthcare": "clinic",
+    "name": "Clínica dos Rins Nefronor"
+  }
+},
+{
+  "type": "way",
+  "id": 622352731,
+  "center": {
+    "lat": -23.1824655,
+    "lon": -50.6515730
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "154",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Nossa Senhora do Rócio",
+    "addr:suburb": "Centro",
+    "amenity": "clinic",
+    "building": "yes",
+    "building:levels": "4",
+    "healthcare": "clinic",
+    "name": "Clínica dos Rins Nefronor"
+  }
+},
+{
+  "type": "way",
+  "id": 622352732,
+  "center": {
+    "lat": -23.1824303,
+    "lon": -50.6515820
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "154",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Nossa Senhora do Rócio",
+    "addr:suburb": "Centro",
+    "amenity": "clinic",
+    "building": "yes",
+    "building:levels": "2",
+    "healthcare": "clinic",
+    "name": "Clínica dos Rins Nefronor"
+  }
+},
+{
+  "type": "way",
+  "id": 624141332,
+  "center": {
+    "lat": -23.1897061,
+    "lon": -50.6413880
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 624141335,
+  "center": {
+    "lat": -23.1897964,
+    "lon": -50.6392706
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Floriano Landgraf",
+    "addr:suburb": "Vila Popular",
+    "amenity": "school",
+    "name": "Escola Municipal Deputado Nilson Baptista Ribas"
+  }
+},
+{
+  "type": "way",
+  "id": 624302531,
+  "center": {
+    "lat": -23.1766553,
+    "lon": -50.6432974
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "240",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Portugal",
+    "amenity": "school",
+    "name": "Colégio Estadual Zulmira Marchesi da Silva"
+  }
+},
+{
+  "type": "way",
+  "id": 624303948,
+  "center": {
+    "lat": -23.1892885,
+    "lon": -50.6549287
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "887",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Santos Dumont",
+    "amenity": "hospital",
+    "building": "yes",
+    "healthcare": "hospital",
+    "name": "Hospital Unimed Norte Paraná"
+  }
+},
+{
+  "type": "way",
+  "id": 624308151,
+  "center": {
+    "lat": -23.1812706,
+    "lon": -50.6496062
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "301",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Minas Gerais",
+    "addr:suburb": "Centro",
+    "amenity": "townhall",
+    "building": "yes",
+    "name": "Prefeitura Municipal"
+  }
+},
+{
+  "type": "way",
+  "id": 624308153,
+  "center": {
+    "lat": -23.1815932,
+    "lon": -50.6495779
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "189;163",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Paraíba",
+    "addr:suburb": "Centro",
+    "amenity": "townhall",
+    "building": "yes",
+    "name": "Câmara Municipal"
+  }
+},
+{
+  "type": "way",
+  "id": 625046875,
+  "center": {
+    "lat": -23.1793837,
+    "lon": -50.6643957
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "176",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Palmas",
+    "addr:suburb": "Vila Independência",
+    "amenity": "school",
+    "name": "Escola Estadual Major João Carlos De Faria - Ensino Fundamental",
+    "website": "http://www.cppjoaofaria.seed.pr.gov.br/modules/noticias/"
+  }
+},
+{
+  "type": "way",
+  "id": 625276728,
+  "center": {
+    "lat": -23.1826771,
+    "lon": -50.6615566
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "158",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Julio Gomes",
+    "amenity": "school",
+    "name": "Escola Estadual Castro Alves - EF M P",
+    "operator": "Estado Paraná",
+    "operator:type": "government"
+  }
+},
+{
+  "type": "way",
+  "id": 625276749,
+  "center": {
+    "lat": -23.1825312,
+    "lon": -50.6599217
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "1295",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Minas Gerais",
+    "amenity": "school",
+    "name": "3.º Colégio da Polícia Militar",
+    "operator": "Polícia Militar"
+  }
+},
+{
+  "type": "way",
+  "id": 625569802,
+  "center": {
+    "lat": -23.1826207,
+    "lon": -50.6672717
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:postcode": "86300-000",
+    "addr:street": "Avenida Thomaz Pelegrini",
+    "addr:suburb": "Jardim Primavera",
+    "amenity": "clinic",
+    "building": "yes",
+    "healthcare": "clinic",
+    "name": "Unidadade Básica de Saúde"
+  }
+},
+{
+  "type": "way",
+  "id": 627428788,
+  "center": {
+    "lat": -23.1951172,
+    "lon": -50.6617995
+  },
+  "tags": {
+    "amenity": "hospital",
+    "healthcare": "hospital",
+    "name": "Hospital Regional"
+  }
+},
+{
+  "type": "way",
+  "id": 704936429,
+  "center": {
+    "lat": -23.1744707,
+    "lon": -50.6683106
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 918932987,
+  "center": {
+    "lat": -23.1731987,
+    "lon": -50.6452614
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1128100260,
+  "center": {
+    "lat": -23.1738237,
+    "lon": -50.6607313
+  },
+  "tags": {
+    "addr:city": "Cornélio Procópio",
+    "addr:housenumber": "124-162",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Alcino Benigno da Silva",
+    "leisure": "sports_centre",
+    "name": "Clube da Gente"
+  }
+},
+{
+  "type": "way",
+  "id": 1128103344,
+  "center": {
+    "lat": -23.1746265,
+    "lon": -50.6695637
+  },
+  "tags": {
+    "amenity": "university"
+  }
+},
+{
+  "type": "way",
+  "id": 1128103345,
+  "center": {
+    "lat": -23.1749687,
+    "lon": -50.6694938
+  },
+  "tags": {
+    "amenity": "university"
+  }
+},
+{
+  "type": "way",
+  "id": 1128103346,
+  "center": {
+    "lat": -23.1752886,
+    "lon": -50.6694136
+  },
+  "tags": {
+    "amenity": "university"
+  }
+},
+{
+  "type": "way",
+  "id": 1128103347,
+  "center": {
+    "lat": -23.1754834,
+    "lon": -50.6692975
+  },
+  "tags": {
+    "amenity": "university"
+  }
+},
+{
+  "type": "way",
+  "id": 1128103348,
+  "center": {
+    "lat": -23.1756206,
+    "lon": -50.6683630
+  },
+  "tags": {
+    "amenity": "university"
+  }
+},
+{
+  "type": "way",
+  "id": 1128103349,
+  "center": {
+    "lat": -23.1757146,
+    "lon": -50.6687526
+  },
+  "tags": {
+    "amenity": "university"
+  }
+},
+{
+  "type": "way",
+  "id": 1128113703,
+  "center": {
+    "lat": -23.1938689,
+    "lon": -50.6637407
+  },
+  "tags": {
+    "amenity": "school"
+  }
+},
+{
+  "type": "way",
+  "id": 1128113705,
+  "center": {
+    "lat": -23.1885624,
+    "lon": -50.6608684
+  },
+  "tags": {
+    "amenity": "university",
+    "name": "Campus FACCREI - Jardim Bandeirantes",
+    "operator": "FACCREI"
+  }
+},
+{
+  "type": "way",
+  "id": 1128281666,
+  "center": {
+    "lat": -23.1787416,
+    "lon": -50.6478779
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Shopping Estação KM-125",
+    "shop": "mall"
+  }
+},
+{
+  "type": "way",
+  "id": 1128379465,
+  "center": {
+    "lat": -23.1868506,
+    "lon": -50.6423796
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1128379466,
+  "center": {
+    "lat": -23.1869510,
+    "lon": -50.6435029
+  },
+  "tags": {
+    "addr:city": "Conélio Procópio",
+    "addr:housenumber": "300",
+    "addr:postcode": "86300-000",
+    "addr:street": "Rua Antônio Paiva Júnior",
+    "addr:suburb": "Jardim Estoril",
+    "amenity": "school",
+    "name": "CEEFM Monteiro Lobato"
+  }
+},
+{
+  "type": "way",
+  "id": 1315067151,
+  "center": {
+    "lat": -23.1773438,
+    "lon": -50.6483125
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "Escola Rui Barbosa"
+  }
+},
+{
+  "type": "way",
+  "id": 1315067155,
+  "center": {
+    "lat": -23.1805045,
+    "lon": -50.6482726
+  },
+  "tags": {
+    "amenity": "bank",
+    "brand": "Itaú Unibanco",
+    "brand:wikidata": "Q1424293",
+    "building": "yes",
+    "name": "Itaú"
+  }
+},
+{
+  "type": "way",
+  "id": 1315067161,
+  "center": {
+    "lat": -23.1903566,
+    "lon": -50.6541246
+  },
+  "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "cuisine": "pizza",
+    "name": "Della Pazetti"
+  }
+},
+{
+  "type": "way",
+  "id": 1315067166,
+  "center": {
+    "lat": -23.1812566,
+    "lon": -50.6500851
+  },
+  "tags": {
+    "amenity": "fuel",
+    "name": "Fox"
+  }
+},
+{
+  "type": "way",
+  "id": 1315067167,
+  "center": {
+    "lat": -23.1811553,
+    "lon": -50.6491412
+  },
+  "tags": {
+    "amenity": "fuel",
+    "name": "Potencial"
+  }
+},
+{
+  "type": "way",
+  "id": 1315067168,
+  "center": {
+    "lat": -23.1812472,
+    "lon": -50.6502867
+  },
+  "tags": {
+    "amenity": "bank",
+    "brand": "Sicredi",
+    "brand:wikidata": "Q3483060",
+    "building": "yes",
+    "name": "Sicredi"
+  }
+},
+{
+  "type": "way",
+  "id": 1497681536,
+  "center": {
+    "lat": -23.1873912,
+    "lon": -50.6497112
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Molinis Av São Paulo",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 1497770668,
+  "center": {
+    "lat": -23.2000636,
+    "lon": -50.6589241
+  },
+  "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Manuel Da Nobrega, E E Pe-Ef"
+  }
+},
+{
+  "type": "way",
+  "id": 1497772816,
+  "center": {
+    "lat": -23.2025071,
+    "lon": -50.6554681
+  },
+  "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "Ki-Sabor"
+  }
+},
+{
+  "type": "way",
+  "id": 1497775763,
+  "center": {
+    "lat": -23.1935898,
+    "lon": -50.6614989
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1497801890,
+  "center": {
+    "lat": -23.1848219,
+    "lon": -50.6409030
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1497801891,
+  "center": {
+    "lat": -23.1847112,
+    "lon": -50.6402379
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1497801893,
+  "center": {
+    "lat": -23.1878203,
+    "lon": -50.6458105
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Molini's Rocha Pombo",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 1497801895,
+  "center": {
+    "lat": -23.1895715,
+    "lon": -50.6429839
+  },
+  "tags": {
+    "amenity": "fuel",
+    "name": "Auto Posto Azul"
+  }
+},
+{
+  "type": "way",
+  "id": 1497801897,
+  "center": {
+    "lat": -23.1904147,
+    "lon": -50.6429732
+  },
+  "tags": {
+    "amenity": "clinic",
+    "healthcare": "yes",
+    "name": "UPA Cornélio Procópio"
+  }
+},
+{
+  "type": "way",
+  "id": 1497816608,
+  "center": {
+    "lat": -23.1712242,
+    "lon": -50.6580753
+  },
+  "tags": {
+    "amenity": "school",
+    "education": "school"
+  }
+},
+{
+  "type": "way",
+  "id": 1497817423,
+  "center": {
+    "lat": -23.1751784,
+    "lon": -50.6527324
+  },
+  "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Escola Municipal Padre Antônio Lock"
+  }
+},
+{
+  "type": "way",
+  "id": 1497818128,
+  "center": {
+    "lat": -23.1818991,
+    "lon": -50.6491156
+  },
+  "tags": {
+    "amenity": "bank",
+    "brand": "Bradesco",
+    "brand:wikidata": "Q806181",
+    "building": "yes",
+    "name": "Bradesco"
+  }
+},
+{
+  "type": "way",
+  "id": 1497818470,
+  "center": {
+    "lat": -23.1804216,
+    "lon": -50.6654214
+  },
+  "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Irma Pia Gioconda Veira"
+  }
+},
+{
+  "type": "way",
+  "id": 1497818472,
+  "center": {
+    "lat": -23.1885635,
+    "lon": -50.6608732
+  },
+  "tags": {
+    "amenity": "university",
+    "name": "Colégio Vila Militar"
+  }
+},
+{
+  "type": "way",
+  "id": 1539670268,
+  "center": {
+    "lat": -23.1884621,
+    "lon": -50.6451804
+  },
+  "tags": {
+    "leisure": "park"
+  }
+}
+
+  ]
+}
